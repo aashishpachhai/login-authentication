@@ -8,10 +8,12 @@ import { JwtModule } from '@nestjs/jwt';
 import { JwtStrategy } from './jwt.strategy';
 import { JwtAuthGuard } from './jwt-auth-guard';
 import { APP_GUARD } from '@nestjs/core';
+import { RefreshJwtStrategy } from './refreshToken.strategy';
 
 @Module({
   imports: [
     UsersModule,
+
     PassportModule,
     JwtModule.register({
       secret: jwtConstants.secret,
@@ -21,6 +23,7 @@ import { APP_GUARD } from '@nestjs/core';
   providers: [
     AuthService,
     LocalStrategy,
+    RefreshJwtStrategy,
     JwtStrategy,
     {
       provide: APP_GUARD,
